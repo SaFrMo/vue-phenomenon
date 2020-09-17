@@ -24,12 +24,12 @@ export default {
         if (!window) return
 
         if (!window.Phenomenon) {
-            window.Phenomenon = require('phenomenon').default
+            window.Phenomenon = import('phenomenon')
         }
 
         const opts = this.options || {}
 
-        this.phenom = new Phenomenon({
+        this.phenom = new window.Phenomenon({
             canvas: this.$refs.canvas,
             ...opts,
 
@@ -49,15 +49,16 @@ export default {
         this.refreshInstances()
     },
     methods: {
-        refreshInstances(hardRefresh = false) {
+        refreshInstances() {
             if (!this.phenom) {
+                // eslint-disable-next-line
                 console.warn('Phenomenon not initialized.')
                 return
             }
 
             // TODO: hard refresh
-            if (hardRefresh) {
-            }
+            // if (hardRefresh) {
+            // }
 
             for (let instance of this.instances) {
                 // already added, ignore
