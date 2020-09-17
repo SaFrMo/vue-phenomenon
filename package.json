@@ -1,0 +1,43 @@
+{
+    "name": "vue-three-wrap",
+    "version": "3.4.3",
+    "description": "Vue component wrapping a THREE.js instance.",
+    "main": "./dist/vue-three-wrap.common.js",
+    "scripts": {
+        "dev": "cd example && vue serve",
+        "buildExtras": "npx babel src/extras --out-dir extras --presets=@babel/preset-env --plugins=@babel/plugin-transform-runtime",
+        "buildComponent": "vue build --target lib --name vue-three-wrap ./src/VueThreeWrap.vue",
+        "build": "npm run buildExtras && npm run buildComponent",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "three",
+        "vue"
+    ],
+    "author": "Sander Moolin",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/cli": "^7.2.3",
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.3.1",
+        "@vue/cli": "^3.2.1",
+        "node-sass": "4.14.1",
+        "sass-loader": "^7.1.0"
+    },
+    "dependencies": {
+        "@babel/plugin-transform-runtime": "7.11.0",
+        "lodash": "4.17.20"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/safrmo/vue-three.git"
+    },
+    "files": [
+        "dist/*",
+        "src/*",
+        "extras/*",
+        "example/*",
+        "*.json",
+        "*.js"
+    ]
+}
