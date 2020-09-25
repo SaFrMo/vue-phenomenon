@@ -1,50 +1,58 @@
 <template>
     <section class="example">
-        <vue-phenomenon :instances="[{ key: 'cube', settings: cube }]">
-            <!-- vert -->
-            <template v-slot:vertex>
-                <script type="x-shader/vertex">
-                    attribute vec3 aPosition;
-                    attribute vec3 aOffset;
+        <div class="single">
+            <min-example />
+        </div>
 
-                    uniform mat4 uProjectionMatrix;
-                    uniform mat4 uModelMatrix;
-                    uniform mat4 uViewMatrix;
-                    uniform float uTime;
-                    varying vec4 vColor;
+        <div class="single">
+            <vue-phenomenon :instances="[{ key: 'cube', settings: cube }]">
+                <!-- vert -->
+                <template v-slot:vertex>
+                    <script type="x-shader/vertex">
+                        attribute vec3 aPosition;
+                        attribute vec3 aOffset;
 
-                    void main(){
-                        vec3 finalPos = aPosition + aOffset + vec3(0., 0., cos(aOffset.x + uTime) * 0.5);
-                        gl_Position = uProjectionMatrix * uModelMatrix * uViewMatrix * vec4(finalPos, 1.0);
-                        gl_PointSize = 10.;
-                        vColor = mix(vec4(0., 0., 0., 1.), vec4(1.), 0.35 - finalPos.z);
-                    }
-                </script>
-            </template>
+                        uniform mat4 uProjectionMatrix;
+                        uniform mat4 uModelMatrix;
+                        uniform mat4 uViewMatrix;
+                        uniform float uTime;
+                        varying vec4 vColor;
 
-            <!-- frag -->
-            <template v-slot:fragment>
-                <script type="x-shader/fragment">
-                    precision highp float;
-                    varying vec4 vColor;
+                        void main(){
+                            vec3 finalPos = aPosition + aOffset + vec3(0., 0., cos(aOffset.x + uTime) * 0.5);
+                            gl_Position = uProjectionMatrix * uModelMatrix * uViewMatrix * vec4(finalPos, 1.0);
+                            gl_PointSize = 5.;
+                            vColor = mix(vec4(0., 0., 0., 1.), vec4(1.), 0.35 - finalPos.z);
+                        }
+                    </script>
+                </template>
 
-                    void main(){
-                        gl_FragColor = vColor;
-                    }
-                </script>
-            </template>
-        </vue-phenomenon>
+                <!-- frag -->
+                <template v-slot:fragment>
+                    <script type="x-shader/fragment">
+                        precision highp float;
+                        varying vec4 vColor;
+
+                        void main(){
+                            gl_FragColor = vColor;
+                        }
+                    </script>
+                </template>
+            </vue-phenomenon>
+        </div>
     </section>
 </template>
 
 <script>
 /* eslint-disable */
 import VuePhenomenon from '../src/VuePhenomenon'
+import MinExample from './MinExample'
 
 let lastTime = Date.now()
 export default {
     components: {
         'vue-phenomenon': VuePhenomenon,
+        'min-example': MinExample,
     },
     data() {
         return {
@@ -82,5 +90,15 @@ export default {
 
 <style lang="scss">
 .example {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    grid-gap: 20px;
+    justify-content: center;
+    grid-auto-rows: 250px;
+
+    .single {
+        position: relative;
+        border: 1px solid black;
+    }
 }
 </style>
