@@ -1,6 +1,6 @@
 {
     "name": "vue-phenomenon",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Vue component wrapping a Phenomenon renderer.",
     "main": "./dist/vue-phenomenon.common.js",
     "scripts": {
