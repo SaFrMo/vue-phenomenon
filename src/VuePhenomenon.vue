@@ -25,7 +25,7 @@ export default {
         if (!window) return
 
         if (!window.Phenomenon) {
-            window.Phenomenon = import('phenomenon')
+            window.Phenomenon = (await import('phenomenon')).default
         }
 
         const opts = this.options || {}
