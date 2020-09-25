@@ -40,6 +40,10 @@
                 </template>
             </vue-phenomenon>
         </div>
+
+        <div class="single">
+            <uv-example />
+        </div>
     </section>
 </template>
 
@@ -47,12 +51,14 @@
 /* eslint-disable */
 import VuePhenomenon from '../src/VuePhenomenon'
 import MinExample from './MinExample'
+import UvExample from './UvExample'
 
 let lastTime = Date.now()
 export default {
     components: {
         'vue-phenomenon': VuePhenomenon,
         'min-example': MinExample,
+        'uv-example': UvExample,
     },
     data() {
         return {
