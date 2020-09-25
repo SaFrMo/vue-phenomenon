@@ -13,6 +13,7 @@ export default {
     props: {
         options: { type: Object, default: () => {} },
         instances: { type: Array, default: () => [] },
+        allowAlpha: { type: Boolean, default: true },
     },
     data() {
         return {
@@ -42,6 +43,15 @@ export default {
                 ...(opts.settings || {}),
             },
         })
+
+        // add transparency
+        if (this.allowAlpha) {
+            this.phenom.gl.enable(this.phenom.gl.BLEND)
+            this.phenom.gl.blendFunc(
+                this.phenom.gl.SRC_ALPHA,
+                this.phenom.gl.ONE_MINUS_SRC_ALPHA
+            )
+        }
 
         // done mounting phenomenon
         this.$emit('initialized', this.phenom)
