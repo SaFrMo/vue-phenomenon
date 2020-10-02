@@ -44,6 +44,10 @@
         <div class="single">
             <uv-example />
         </div>
+
+        <div class="single">
+            <glow-example />
+        </div>
     </section>
 </template>
 
@@ -52,6 +56,7 @@
 import VuePhenomenon from '../src/VuePhenomenon'
 import MinExample from './MinExample'
 import UvExample from './UvExample'
+import GlowExample from './GlowExample'
 
 let lastTime = Date.now()
 export default {
@@ -59,6 +64,7 @@ export default {
         'vue-phenomenon': VuePhenomenon,
         'min-example': MinExample,
         'uv-example': UvExample,
+        'glow-example': GlowExample,
     },
     data() {
         return {
